@@ -56,7 +56,7 @@
 
 天时：现在做完全来得及。（Idea都想好了，就差程序员了）
 
-地利：[资讯民大](http://weixin.sogou.com/gzh?openid=oIWsFtwvpD2EjmoeDC5NjQ0ZRgU8)，本届（2011 级）毕业生是看着资讯民大长大的，大多数人都关注了资讯民大，认可度较高。
+地利：[资讯民大](http://weixin.sogou.com/gzh?openid=oIWsFtwvpD2EjmoeDC5NjQ0ZRgU8)（主要宣传平台），本届（2011 级）毕业生是看着资讯民大长大的，大多数人都关注了资讯民大，认可度较高。
 
 人和：比特工场、资讯民大等团队鼎力支持。
 
