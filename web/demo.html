@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>图片上传示例</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+</head>
+<body>
+    <div class="lbox_close wxapi_form">
+        <h3 id="menu-basic">基础接口</h3>
+        <span class="desc">判断当前客户端是否支持指定JS接口</span>
+        <button class="btn btn_primary" id="checkJsApi">checkJsApi</button>
+        <h3 id="menu-image">图像接口</h3>
+        <span class="desc">拍照或从手机相册中选图接口</span>
+        <button class="btn btn_primary" id="chooseImage">chooseImage</button>
+        <span class="desc">上传图片接口</span>
+        <button class="btn btn_primary" id="uploadImage">uploadImage</button>
+    </div>
+    <div id="allimg"></div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    currentUrl = location.href.replace(location.hash, '');
+    $.ajax({
+        url: 'http://zixunminda.stuzone.com/api/get_sign_package.php?url=' + encodeURIComponent(currentUrl) + '&callback=callback',
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        success: function (data) {
+            wx.config({
+                debug: true,
+                appId: data.appId,
+                timestamp: data.timestamp,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'getNetworkType',
+                    'closeWindow',
+                    'scanQRCode'
+                ]
+            });
+
+            wx.ready(function () {
+                // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+                document.querySelector('#checkJsApi').onclick = function () {
+                    wx.checkJsApi({
+                        jsApiList: [
+                            'chooseImage',
+                            'previewImage',
+                            'uploadImage'
+                        ],
+                        success: function (res) {
+                            alert(JSON.stringify(res));
+                        }
+                    });
+                };
+
+                // 5 图片接口
+                // 5.1 拍照、本地选图
+                var images = {
+                    localId: [],
+                    serverId: []
+                };
+                document.querySelector('#chooseImage').onclick = function () {
+                    wx.chooseImage({
+                        success: function (res) {
+                            images.localId = res.localIds;
+                            alert('已选择 ' + res.localIds.length + ' 张图片');
+                            var html = '';
+                            for (var i in images.localId) {
+                                html += '<img src="' + images.localId[i] + '" />';
+                            }
+                            $("#allimg").html(html);
+                        }
+                    });
+                };
+
+                // 5.3 上传图片
+                document.querySelector('#uploadImage').onclick = function () {
+                    if (images.localId.length == 0) {
+                        alert('请先使用 chooseImage 接口选择图片');
+                        return;
+                    }
+                    var i = 0, length = images.localId.length;
+                    images.serverId = [];
+                    function upload() {
+                        wx.uploadImage({
+                            localId: images.localId[i],
+                            success: function (res) {
+                                i++;
+                                alert('已上传：' + i + '/' + length);
+                                images.serverId.push(res.serverId);
+                                save_img(res.serverId);
+                                if (i < length) {
+                                    upload();
+                                }
+                            },
+                            fail: function (res) {
+                                alert(JSON.stringify(res));
+                            }
+                        });
+                    }
+                    upload();
+                };
+            });
+
+            wx.error(function (res) {
+                alert(res.errMsg);
+            });
+        }
+    });
+
+    function save_img(mediaID)
+    {
+        $.ajax({
+            url: 'http://zixunminda.stuzone.com/api/get_file_url_by_mediaId.php?media_id=' + mediaID + '&callback=callback',
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            success: function (data) {
+                alert(JSON.stringify(data));
+            }
+        });
+    }
+</script>
+</html>
