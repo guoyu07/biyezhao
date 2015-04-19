@@ -1,0 +1,99 @@
+a {
+	text-decoration: none;
+	color: #000;
+}
+.wrap {
+	width: 94%;
+	margin: 0 auto;
+	margin-top: 10px;
+	height: auto;
+	/*border: 1px solid red;*/
+}
+.reg-apply {
+	display: flex;
+	width: 100%;
+	height: auto;
+	margin-top: 1.5em;
+	font-weight: 600;
+	/*border: 1px solid blue;*/
+}
+.register {
+	margin: auto;
+	color: #000;
+	font-size: 1em;
+}
+.apply {
+	display: flex;
+	margin: auto;
+	color: #000;
+	font-size: 1em;
+}
+.apply-link {
+	margin: auto;
+}
+.apply-img {
+	/*max-height: 90%;*/
+	width: 1.2em;
+	max-width: 30px;
+	max-height: 30px;
+	margin: auto;
+	margin-left: 3px;
+}
+
+/* login form */
+
+.login-form {
+	margin-top: 4.5em;
+}
+.login-form input {
+	display: inline-block;
+	font-size: 1.2em;
+	margin-top: 1.5em;
+	border-bottom: 1px solid #000;
+	padding-bottom: 3px;
+	width: 100%;
+}
+input.submit-btn {
+	margin-top: 30%;
+	height: 2em;
+	color: #fff;
+	display: inline-block;
+	padding: 0;
+	border-radius: 4px;
+	border-bottom: none;
+	background-color: #f84e4e;	
+}
+.footer {
+	display: flex;
+	height: 7.5em;
+	font-size: 0.8em;
+}
+.copyright {
+	margin: auto;
+	margin-bottom: 0;
+}
+
+
+/* ch_pass.html page */
+div.varifi {
+	display: flex;
+	margin-top: 1.5em;
+}
+input.vcode {
+	display: inline-block;
+	flex: 2;
+	border: 1px solid #666;
+	border-radius: 4px;
+	margin: 0;
+	padding: 3px;
+	width: auto;
+}
+.send-code {
+	flex: 1;
+	margin: 0 auto;
+	margin-left: 1.5em;
+	border: 1px solid #000;
+	border-radius: 4px;
+	background-color: #fff;
+	color: #000;
+}
