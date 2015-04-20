@@ -11,6 +11,11 @@ a {
 }
 .reg-apply {
 	display: flex;
+	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	width: 100%;
 	height: auto;
 	margin-top: 1.5em;
@@ -24,6 +29,11 @@ a {
 }
 .apply {
 	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+
 	margin: auto;
 	color: #000;
 	font-size: 1em;
@@ -65,6 +75,10 @@ input.submit-btn {
 }
 .footer {
 	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	height: 7.5em;
 	font-size: 0.8em;
 }
@@ -77,11 +91,16 @@ input.submit-btn {
 /* ch_pass.html page */
 div.varifi {
 	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	margin-top: 1.5em;
 }
 input.vcode {
 	display: inline-block;
 	flex: 2;
+	-webkit-flex: 2;
 	border: 1px solid #666;
 	border-radius: 4px;
 	margin: 0;
@@ -90,6 +109,7 @@ input.vcode {
 }
 .send-code {
 	flex: 1;
+	-webkit-flex: 1;
 	margin: 0 auto;
 	margin-left: 1.5em;
 	border: 1px solid #000;
